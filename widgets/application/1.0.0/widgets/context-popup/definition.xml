@@ -7,5 +7,6 @@
         <css-include file="context-popup.css"/>
         <js-include file="ContextPopup.js"/>
     </includes>
+    <children allowed="y" />
     <js-constructor>new YAHOO.application.ContextPopup()</js-constructor>
 </widget>

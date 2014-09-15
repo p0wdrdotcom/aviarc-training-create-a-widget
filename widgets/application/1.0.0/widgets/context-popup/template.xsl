@@ -14,15 +14,15 @@
         <xsl:variable name="css-prefix">
             <xsl:value-of select="xsltutils:getWidgetCSSPrefix()"/>
         </xsl:variable>
-        <!-- 
-        IMPLEMENT THIS
-            We need to evaluate the visible attribute to set the default open state
-            All widgets get a visible status by default
-            
-            We also need to add the ability for Aviarc add child widgets as we want to be able to just throw some widgets in there
-        -->
+       <xsl:variable name="invisible-style">
+            <xsl:choose>
+                <xsl:when test="xsltutils:isFalse(@visible)">display-none</xsl:when>
+                <xsl:otherwise></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
 
-        <div id="{@name}:div" class="{cssutils:makeClassString(concat($css-prefix, 'context-popup'), @class)}">
+        <div id="{@name}:div" class="{cssutils:makeClassString(concat($css-prefix, 'context-popup'), @class)} {$invisible-style}">
+            <aviarc:add-children />
         </div>
     </xsl:template>
 </xsl:stylesheet>
