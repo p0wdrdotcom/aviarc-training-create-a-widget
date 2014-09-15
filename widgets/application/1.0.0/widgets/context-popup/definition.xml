@@ -5,6 +5,7 @@
     <attributes />
     <includes>
         <css-include file="context-popup.css"/>
+        <js-include file="jquery-1.11.1.js"/>
         <js-include file="ContextPopup.js"/>
     </includes>
     <children allowed="y" />

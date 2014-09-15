@@ -1,7 +1,7 @@
 <screen xmlns:action="urn:aviarc:widget:com.aviarc.toronto.widget.core.action" xmlns:app="urn:aviarc:widget:application">
     <button name="button" width="157" height="60" left="267" top="105" label="Show Popup">
         <action:when event="onClick">
-            <action:call-widget-method method="the-popup.open" value1="button" />
+            <action:call-widget-method method="the-popup.open" value1="button" value2="159" />
         </action:when>
     </button>
     

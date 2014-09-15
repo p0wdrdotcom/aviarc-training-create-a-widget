@@ -33,7 +33,9 @@ YAHOO
         open : function(widgetId, relX, relY) {
             var widget = this.getWidgetContext().findWidgetByID(widgetId);
             var referenceElement = widget.getContainerElement();       
-            this._showPopup(referenceElement, relX, relY);
+            this._showPopup(referenceElement,
+                            parseInt(relX,10),
+                            parseInt(relY,10));
 
         },
         
@@ -54,8 +56,15 @@ YAHOO
          * 
          **/
         _showPopup: function (referenceElement, relX, relY) {
-            
+            debugger;
+
             document.body.appendChild(this._contextPopup);
+            
+            var offset = $(referenceElement).offset();
+            offset.left +=  relX || 0;
+            offset.top += relY || 0;
+            $(this._contextPopup).offset(offset);
+            
             YAHOO.util.Dom.removeClass(this._contextPopup, "display-none");            
             this._isShown = true;
             
