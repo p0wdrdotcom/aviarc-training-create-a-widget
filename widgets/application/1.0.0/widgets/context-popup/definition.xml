@@ -1,0 +1,11 @@
+<widget name="context-popup" 
+        container-positioning="y" 
+        factory-class="com.aviarc.framework.toronto.widget.DefaultWidgetProviderFactoryImpl">
+       
+    <attributes />
+    <includes>
+        <css-include file="context-popup.css"/>
+        <js-include file="ContextPopup.js"/>
+    </includes>
+    <js-constructor>new YAHOO.application.ContextPopup()</js-constructor>
+</widget>
