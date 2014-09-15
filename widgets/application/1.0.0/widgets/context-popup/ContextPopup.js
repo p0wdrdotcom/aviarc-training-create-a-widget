@@ -24,12 +24,7 @@ YAHOO
             
             this._isShown = parseBoolean(this.getAttribute("visible"));
         },
-        /**
-         * IMPLEMENT THIS
-         * 
-         * get the thing we want to open next to and its DOM element - this is the widget and its root HTML element
-         * 
-         **/
+
         open : function(widgetId, relX, relY) {
             var widget = this.getWidgetContext().findWidgetByID(widgetId);
             var referenceElement = widget.getContainerElement();       
@@ -43,14 +38,6 @@ YAHOO
            this._hidePopup();
         },
         
-        /**
-         * IMPLEMENT THIS
-         * 
-         * we want to register a handler first so that we can close the popup when the user clicks outside it
-         * 
-         * 
-         * 
-         **/
         _showPopup: function (referenceElement, relX, relY) {
             if (document.createEvent) {
                 var event = document.createEvent('HTMLEvents');
@@ -84,20 +71,18 @@ YAHOO
             this._hidePopup();
         },
         
-        /**
-         * IMPLEMENT THIS
-         * 
-         *  Put context menu popup back where it was before we put it at the end of the HTML doc;
-         * 
-         *  Hide the context popup
-         * 
-         *  clean up the document mouse down "hide me" event handler registered
-         * 
-         *  deactivate the widget tree below the context popup
-         * 
-         **/
         _hidePopup : function() {
-            console.log('event handled!');
+            this._originalParent.insertBefore(this._contextPopup, this._originalNextSib);
+            $(this._contextPopup).offset({
+                top: 0,
+                left:0
+            });
+            YAHOO.util.Dom.addClass(this._contextPopup, "display-none");
+            YAHOO.util.Event.removeListener(this._contextPopup, "mouseout",this._mouseOutHidePopupEventHdlr);
+           
+            this._isShown = false;
+            
+            this.getWidgetContext().getWidgetNode().deactivate();
             
         },
         
