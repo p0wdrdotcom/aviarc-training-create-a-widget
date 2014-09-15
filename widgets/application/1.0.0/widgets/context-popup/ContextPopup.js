@@ -52,7 +52,14 @@ YAHOO
          * 
          **/
         _showPopup: function (referenceElement, relX, relY) {
-            debugger;
+            if (document.createEvent) {
+                var event = document.createEvent('HTMLEvents');
+                event.initEvent('mousedown', true, true);
+                document.dispatchEvent(event);
+            } else {
+                document.fireEvent("onmousedown");
+            }
+            YAHOO.util.Event.addListener(document, "mousedown", this._hidePopupEventHdlr , this, true);
 
             document.body.appendChild(this._contextPopup);
             
@@ -90,7 +97,7 @@ YAHOO
          * 
          **/
         _hidePopup : function() {
-            
+            console.log('event handled!');
             
         },
         
