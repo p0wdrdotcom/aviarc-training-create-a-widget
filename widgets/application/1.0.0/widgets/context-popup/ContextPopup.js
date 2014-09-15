@@ -48,11 +48,7 @@ YAHOO
          * 
          * we want to register a handler first so that we can close the popup when the user clicks outside it
          * 
-         * we need to put the context popups root HTML element ontop of everything else.  
          * 
-         * make the popup visible and remember that we have
-         * 
-         * activate the widget tree below the context popup so the widgets work!
          * 
          **/
         _showPopup: function (referenceElement, relX, relY) {
@@ -67,6 +63,8 @@ YAHOO
             
             YAHOO.util.Dom.removeClass(this._contextPopup, "display-none");            
             this._isShown = true;
+            
+            this.getWidgetContext().getWidgetNode().activate();
             
         },
         
