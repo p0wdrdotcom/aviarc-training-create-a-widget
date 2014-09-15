@@ -14,26 +14,15 @@ YAHOO
 
     YAHOO.lang.extend(application.ContextPopup, Toronto.framework.DefaultWidgetImpl, {
             
-        /**
-         * IMPLEMENT THIS
-         * 
-         * this is startup for a widget - all widgets have them - this is called when Toronto traverses the widget tree when the page loads
-         * 
-         * Key things to do here are
-         *  - get hold of some DOM elements we need to remember
-         *  - parse our passed attributes
-         *  - set some internal widget state
-         *  - DO NOT LOOK AT DATA AS ITS NOT READY YET
-         * 
-         * 
-         *  Here we need to get access to our DOM nodes so we know where we are in the document
-         *  Here we should set some internal state This widget needs to report if its shown or not
-         * 
-         **/
+        
         startup: function (widgetContext) {            
             application.ContextPopup.superclass.startup.apply(this, arguments);
-
             
+            this._contextPopup    = this.getContainerElement();
+            this._originalParent  = this._contextPopup.parentNode;
+            this._originalNextSib = this._contextPopup.nextSibling;
+            
+            this._isShown = parseBoolean(this.getAttribute("visible"));
         },
         /**
          * IMPLEMENT THIS
